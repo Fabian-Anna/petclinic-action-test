@@ -1,0 +1,47 @@
+<!--
+  ~ /*
+  ~  * Copyright 2016-2017 the original author or authors.
+  ~  *
+  ~  * Licensed under the Apache License, Version 2.0 (the "License");
+  ~  * you may not use this file except in compliance with the License.
+  ~  * You may obtain a copy of the License at
+  ~  *
+  ~  *      http://www.apache.org/licenses/LICENSE-2.0
+  ~  *
+  ~  * Unless required by applicable law or agreed to in writing, software
+  ~  * distributed under the License is distributed on an "AS IS" BASIS,
+  ~  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  * See the License for the specific language governing permissions and
+  ~  * limitations under the License.
+  ~  */
+  -->
+<div class="container-fluid">
+  <div class="container xd-container">
+    <h2>Visits</h2>
+    <table [hidden]="noVisits" class="table table-condensed" id="visit-list-table">
+      <thead>
+      <tr>
+        <th>Pet</th>
+        <th>Owner</th>
+        <th>Visit Date</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tr *ngFor="let vp of visitsToShow()" >
+        <td>{{ vp.pet.name }}</td>
+        <td><a routerLink="/owners/{{vp.owner.id}}" routerLinkActive="active" id="{{vp.owner.id}}"
+               (click)="onSelect(vp.owner)">{{ vp.owner.firstName }} {{ vp.owner.lastName }}</a></td>
+        <td>{{ vp.visit.date }}</td>
+        <td>{{ vp.visit.description }}</td>
+        <td>
+          <button class="btn btn-default" (click)="editVisit(vp.visit)" id="editButton">Edit Visit</button>
+          <button class="btn btn-default" (click)="deleteVisit(vp.visit)" id="deleteButton">Delete Visit</button>
+        </td>
+      </tr>
+    </table>
+    <button class="btn btn-default" (click)="move5(true)" id="next5">5 next</button>
+    <button class="btn btn-default" (click)="move5(false)" id="prev5">5 prev</button>
+    <span>Showing {{ sliceMin }} to {{ sliceMax }}</span>
+  </div>
+</div>
