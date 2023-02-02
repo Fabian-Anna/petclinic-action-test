@@ -1,0 +1,16 @@
+name: CI Frontend
+
+on:
+  pull_request:
+    branches:
+      - 'main'
+      - 'develop'
+  workflow_dispatch:
+
+jobs:
+  run-jasmine+karma:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run on linux
+        run: |
+          npm run test-headless
