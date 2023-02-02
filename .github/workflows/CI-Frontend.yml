@@ -13,8 +13,17 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
+      
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
 
-      - name: run on linux
+      - name: Install npm
+        run: |
+          cd ./spring-petclinic-angular
+          npm install
+
+      - name: run tests
         run: |
           cd ./spring-petclinic-angular
           npm run test-headless
