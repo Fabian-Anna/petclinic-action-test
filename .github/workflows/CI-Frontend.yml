@@ -11,6 +11,10 @@ jobs:
   run-jasmine-karma:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
       - name: run on linux
         run: |
+          cd ./spring-petclinic-angular
           npm run test-headless
